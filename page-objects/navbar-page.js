@@ -4,6 +4,10 @@ class NavbarPage {
     constructor(){
         this.searchBox = Selector('#searchTerm')
         this.signInButton = Selector('#signin_button')
+        this.logoText = Selector ('.navbar-fixed-top a')
+        this.linkToHome = Selector('#homeMenu')
+        this.linkToOnlineBanking = Selector('#onlineBankingMenu')
+        this.linkToFeedback = Selector('#feedback')
     }
 
     async search(text){
