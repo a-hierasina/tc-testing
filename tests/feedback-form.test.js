@@ -1,13 +1,26 @@
 import { Selector } from 'testcafe'
 import NavbarPage from '../page-objects/navbar-page'
 import FeedbackPage from '../page-objects/feedback-page'
+import { ClientFunction } from 'testcafe';
 
 const navbarPage = new NavbarPage()
 const feedbackPage = new FeedbackPage()
+const getLocation = ClientFunction(() => document.location.href);
 
 fixture `Feedback form test`
     .page `http://zero.webappsecurity.com/index.html`
 
+test('Should display elements on page and link is active', async t =>{
+    await t.click(navbarPage.linkToFeedback)
+    await t.expect(feedbackPage.feedbackHeader.exists).ok()
+    await t.expect(feedbackPage.feedbackDescriptionTxt.innerText).contains('If you can\'t find your question, return to this page')
+
+    await t.click(feedbackPage.feedbackDescriptionLnk)
+    await t.expect(getLocation()).contains('faq.html')
+
+
+
+})
 test('Should clear feedback form', async t =>{
     await t.click(navbarPage.linkToFeedback)
     await t.typeText(feedbackPage.form_name,'Alla')
