@@ -3,7 +3,7 @@ import LoginPage from '../page-objects/login-page'
 
 const loginPage = new LoginPage()
 
-fixture `Login Test`
+fixture.skip `Login Test`
     .page `http://zero.webappsecurity.com/index.html`
 
 test('', async t =>{
